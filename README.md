@@ -1,6 +1,6 @@
 # BGL_server
 
-Create by Tam Chi Fung
+Created by Tam Chi Fung
 
 - To query the GET "/list"
     - `curl -X GET http://ip_address_of_the_server/list`
