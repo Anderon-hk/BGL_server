@@ -11,9 +11,9 @@ import (
 )
 
 type Obj struct {
+	Time time.Time
 	Key   string
 	Value string
-	Time time.Time
 }
 
 type PObj struct {
@@ -25,7 +25,7 @@ func responsehd(w http.ResponseWriter, r *http.Request){
 	list := make([]Obj, 0)
 
 	for key, val := range(valMap){
-		o := Obj{key, val, timeMap[key]}
+		o := Obj{timeMap[key], key, val}
 		list = append(list, o)
 	}
 
