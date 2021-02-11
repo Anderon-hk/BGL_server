@@ -10,14 +10,9 @@ import (
 	"github.com/go-chi/chi/middleware"
 )
 
-
-type PObj struct {
+type Obj struct {
 	Key   string
 	Value string
-}
-
-type Obj struct {
-	PObj
 	Time time.Time
 }
 
@@ -30,6 +25,13 @@ func makeObj(o PObj) Obj{
 }
 
 func responsehd(w http.ResponseWriter, r *http.Request){
+	list := make([]Obj, 0)
+
+	for key, val := range(valMap){
+		o := Obj{key, val, timeMap[key]}
+		list = append(list, o)
+	}
+
 	response, _ := json.Marshal(list)
 	fmt.Println(string(response))
 	w.Header().Set("Content-Type", "application/json")
@@ -48,8 +50,8 @@ func posthd(w http.ResponseWriter, r *http.Request){
 	fmt.Println(string(js))
 }
 
-
-var list = make([]Obj, 0)
+var valMap = make(map[string]string)
+var timeMap = make(map[string]time.Time)
 
 func main(){
 
