@@ -31,10 +31,10 @@ func makeObj(o PObj) Obj{
 
 func responsehd(w http.ResponseWriter, r *http.Request){
 	response, _ := json.Marshal(list)
-		fmt.Println(string(response))
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write(response)
+	fmt.Println(string(response))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(response)
 }
 
 func posthd(w http.ResponseWriter, r *http.Request){
