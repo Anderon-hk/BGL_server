@@ -16,12 +16,9 @@ type Obj struct {
 	Time time.Time
 }
 
-func makePobj(k string, v string) PObj{
-	return PObj{k, v}
-}
-
-func makeObj(o PObj) Obj{
-	return Obj{o, time.Now()}
+type PObj struct {
+	Key   string
+	Value string
 }
 
 func responsehd(w http.ResponseWriter, r *http.Request){
@@ -42,12 +39,9 @@ func responsehd(w http.ResponseWriter, r *http.Request){
 func posthd(w http.ResponseWriter, r *http.Request){
 	var po PObj
 	json.NewDecoder(r.Body).Decode(&po)
-	o := makeObj(po)
 
-	list = append(list, o)
-
-	js, _ := json.Marshal(list)
-	fmt.Println(string(js))
+	valMap[po.Key] = po.Value
+	timeMap[po.Key] = time.Now()
 }
 
 var valMap = make(map[string]string)
