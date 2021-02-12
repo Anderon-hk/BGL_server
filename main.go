@@ -11,7 +11,7 @@ import (
 )
 
 type Obj struct {
-	Time time.Time
+	Time string
 	Key   string
 	Value string
 }
@@ -25,7 +25,7 @@ func responsehd(w http.ResponseWriter, r *http.Request){
 	list := make([]Obj, 0)
 
 	for key, val := range(valMap){
-		o := Obj{timeMap[key], key, val}
+		o := Obj{timeMap[key].UTC().Format("2006-01-02T15:04:05Z07:00"), key, val}
 		list = append(list, o)
 	}
 
